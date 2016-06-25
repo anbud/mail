@@ -1,8 +1,10 @@
+import { Meteor } from 'meteor/meteor';
+
 Meteor.methods({
 	sendEmail: function (to, from, subject, markdown) {
 		check([from, subject, markdown], [String]);
 		check(to, [String]);
-		
+
         var converter = new Showdown.converter();
 		var html = converter.makeHtml(markdown); 
 
