@@ -5,7 +5,8 @@ Template.home.events({
         var file = document.getElementById('js-csvMail').files[0];
 
         if(file) {
-            $("#js-poruka").text("Sending...");
+            document.getElementById("js-submit-btn").disabled = true;
+            $("#js-submit-btn").text("Sending...");
 
             var rd = new FileReader();
 
@@ -14,7 +15,8 @@ Template.home.events({
 
                 Meteor.call('sendEmail', cols[0], "test@zamphyr.com", $("#js-subject").val(), $("#js-markdown").val(), (err, data) => {
                     if(!err)
-                        $("#js-poruka").text("Sent!");
+                        document.getElementById("js-submit-btn").disabled = false;
+                        $("#js-submit-btn").text("Send");
                 });
             }
 
